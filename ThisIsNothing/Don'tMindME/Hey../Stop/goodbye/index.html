@@ -9,20 +9,28 @@
 </head>
 <body>
     <main id="terminal">
-        <div id="cursor"></div>
-        <div id="face"></div>
+        <div id="typing-area">
+            <span id="face"></span><span id="cursor"></span>
+        </div>
+
+        <div id="floating-face">
+            <span id="float-character">>:3</span>
+        </div>
+
         <div id="message"></div>
     </main>
 
     <script>
-        const cursor = document.getElementById("cursor");
+        const typingArea = document.getElementById("typing-area");
         const face = document.getElementById("face");
+        const cursor = document.getElementById("cursor");
+        const floatingFace = document.getElementById("floating-face");
         const message = document.getElementById("message");
 
         const sleep = ms =>
             new Promise(resolve => setTimeout(resolve, ms));
 
-        async function typeText(element, text, speed = 110) {
+        async function typeText(element, text, speed = 250) {
             for (const char of text) {
                 element.textContent += char;
                 await sleep(speed);
@@ -30,30 +38,34 @@
         }
 
         async function start() {
-            await sleep(1200);
+            await sleep(2500);
 
-            await typeText(face, ":3", 400);
-            await sleep(600);
+            await typeText(face, ":3", 650);
+            await sleep(1800);
 
-            cursor.style.opacity = "0";
+typingArea.classList.add("cursor-back");
+            await sleep(450);
+
             face.textContent = ">:3";
+            await sleep(350);
+
+            cursor.style.display = "none";
+
+            typingArea.classList.add("vanish");
 
             await sleep(700);
 
-            face.classList.add("rotate");
-
-            await sleep(900);
-
-            await typeText(
-                message,
-                "A tiny UWU goodbye. Thanks for the visit!",
-                75
-            );
+            floatingFace.classList.add("appear");
 
             await sleep(1800);
 
-            face.classList.add("fly");
-            message.style.opacity = "0";
+            message.classList.add("visible");
+            await typeText(message, "Why awe you twying to uninstaww me?", 120);
+
+            await sleep(2500);
+
+            message.classList.remove("visible");
+            floatingFace.classList.add("fly");
         }
 
         start();

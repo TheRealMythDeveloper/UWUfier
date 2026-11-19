@@ -1,95 +1,149 @@
 
-* {
-    box-sizing: border-box;
+* {box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    background: white;
-    color: black;
+    background: #ffffff;
+    color: #111111;
     font-family: monospace;
 }
 
 #terminal {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
 }
-
-#cursor {
-    width: 3px;
-    height: 28px;
-    background: black;
+#typing-area {
     position: absolute;
-    animation: blink 0.8s infinite;
-    transition: opacity 0.2s;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    white-space: pre;
+    transition: opacity 0.5s ease;
 }
 
 #face {
-    position: absolute;
-    font-size: 32px;
-    opacity: 0;
-    transition:
-        transform 1s ease,
-        font-size 1s ease,
-        opacity 0.4s ease;
+    line-height: 1.2;
+    display: inline-block;
 }
 
-#face:not(:empty) {
+#cursor {
+    display: inline-block;
+    width: 3px;
+    height: 32px;
+    background: #111111;
+    margin-left: 4px;
+    animation: blink 0.8s step-end infinite;
+}
+
+
+#typing-area.cursor-back {
+    padding-left: 16px;
+}
+
+.cursor-back #cursor {
+    position: absolute;
+    left: 0;
+    margin-left: 0;
+}
+
+
+#typing-area.vanish {
+    opacity: 0;
+}
+
+
+#floating-face {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    opacity: 0;
+    font-size: clamp(90px, 15vw, 180px);
+    line-height: 1;
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+    transition: opacity 1s ease;
+    pointer-events: none;
+}
+
+#floating-face.appear {
     opacity: 1;
 }
 
-#face.rotate {
+
+#float-character {
+    display: inline-block;
     transform: rotate(90deg);
-    font-size: 100px;
 }
+
+
+#floating-face.fly {
+    animation: flyAround 9s ease-in-out infinite alternate;
+}
+
+@keyframes flyAround {
+    0% {
+        left: 50%;
+        top: 50%;
+    }
+
+    20% {
+        left: 78%;
+        top: 30%;
+    }
+
+    40% {
+        left: 25%;
+        top: 70%;
+    }
+
+    60% {
+        left: 72%;
+        top: 78%;
+    }
+
+    80% {
+        left: 20%;
+        top: 25%;
+    }
+
+    100% {
+        left: 50%;
+        top: 15%;
+    }
+}
+
 
 #message {
     position: absolute;
-    top: calc(50% + 100px);
-    width: 90%;
+    left: 50%;
+    top: calc(50% + 150px);
+    transform: translateX(-50%);
+    width: min(90%, 700px);
     text-align: center;
-    font-size: 18px;
-    transition: opacity 0.5s;
+    font-size: clamp(16px, 2vw, 22px);
+    line-height: 1.6;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
-#face.fly {
-    animation: flyAround 4s ease-in-out infinite alternate;
+#message.visible {
+    opacity: 1;
 }
+
 
 @keyframes blink {
     50% {
         opacity: 0;
     }
 }
-
-@keyframes flyAround {
-    0% {
-        transform: translate(0, 0) rotate(90deg);
-    }
-
-    25% {
-        transform: translate(30vw, -20vh) rotate(180deg);
-    }
-
-    50% {
-        transform: translate(-25vw, 25vh) rotate(270deg);
-    }
-
-    75% {
-        transform: translate(15vw, 35vh) rotate(360deg);
-    }
-
-    100% {
-        transform: translate(-35vw, -25vh) rotate(450deg);
-    }
-}
-
-  
-
-
 
