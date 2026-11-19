@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "UWUfier",
+  "version": "1.0",
+  "description": "Turns the internet into UWU.",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
