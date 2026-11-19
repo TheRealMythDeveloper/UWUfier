@@ -40,3 +40,4 @@ I have AI declaration statements IN THE README. So.. just read that.
 
 
 Also in styles and service-worker.
+
