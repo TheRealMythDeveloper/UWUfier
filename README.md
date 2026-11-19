@@ -1,2 +1,0 @@
-# UWUfier
-Uwu
