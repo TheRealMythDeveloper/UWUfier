@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UWUfier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="terminal">
+        <div id="cursor"></div>
+        <div id="face"></div>
+        <div id="message"></div>
+    </main>
+
+    <script>
+        const cursor = document.getElementById("cursor");
+        const face = document.getElementById("face");
+        const message = document.getElementById("message");
+
+        const sleep = ms =>
+            new Promise(resolve => setTimeout(resolve, ms));
+
+        async function typeText(element, text, speed = 110) {
+            for (const char of text) {
+                element.textContent += char;
+                await sleep(speed);
+            }
+        }
+
+        async function start() {
+            await sleep(1200);
+
+            await typeText(face, ":3", 400);
+            await sleep(600);
+
+            cursor.style.opacity = "0";
+            face.textContent = ">:3";
+
+            await sleep(700);
+
+            face.classList.add("rotate");
+
+            await sleep(900);
+
+            await typeText(
+                message,
+                "A tiny UWU goodbye. Thanks for the visit!",
+                75
+            );
+
+            await sleep(1800);
+
+            face.classList.add("fly");
+            message.style.opacity = "0";
+        }
+
+        start();
+    </script>
+</body>
+</html>

@@ -1,8 +1,12 @@
+
 {
   "manifest_version": 3,
   "name": "UWUfier",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Turns the internet into UWU.",
+  "background": {
+    "service_worker": "service-worker.js"
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
