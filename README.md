@@ -34,3 +34,8 @@ Cweated by **Mythos Studios**.
 
 Have fun!! 
 *Im actually sorry for those cringing at this, it was a friends idea.*
+
+## AI USAGE DECLARATION
+I used AI to format code into pretty code. 
+This may trigger AI code detectors apparently.
+I made quite a few rant files in here about that. read them if you will.
