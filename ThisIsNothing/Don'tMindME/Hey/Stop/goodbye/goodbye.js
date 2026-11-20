@@ -1,0 +1,211 @@
+const cursor = document.getElementById("cursor");
+const face = document.getElementById("face");
+const typingArea = document.getElementById("typing-area");
+const floatingFace = document.getElementById("floating-face");
+const character = document.getElementById("float-character");
+const message = document.getElementById("message");
+const choicesBox = document.getElementById("choices");
+
+const sleep = ms =>
+    new Promise(resolve => setTimeout(resolve, ms));
+
+async function typeText(element, text, speed = 100) {
+    for (const char of text) {
+        element.textContent += char;
+        await sleep(speed);
+    }
+}
+
+function clearChoices() {
+    choicesBox.innerHTML = "";
+}
+
+function showChoices(options) {
+    clearChoices();
+
+    options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.textContent = option.text;
+        button.style.setProperty("--choice-index", index);
+        button.onclick = option.action;
+        choicesBox.appendChild(button);
+    });
+}
+
+async function say(text, speed = 65) {
+    message.textContent = "";
+    message.classList.add("visible");
+    await typeText(message, text, speed);
+}
+
+function setFace(text) {
+    character.textContent = text;
+}
+
+
+async function opening() {
+    await say("Why awe you uninstawwing me?", 85);
+
+    showChoices([
+        {
+            text: "I don't need you anymore.",
+            action: () => accepting()
+        },
+        {
+            text: "You're annoying.",
+            action: () => annoyed()
+        },
+        {
+            text: "What are you doing here?",
+            action: () => curious()
+        }
+    ]);
+}
+
+
+async function curious() {
+    clearChoices();
+
+    await say("I... wanted to say hi?", 90);
+    await sleep(900);
+
+    await say("Wait. That's not why you're here, is it?", 75);
+
+    showChoices([
+        {
+            text: "No. I'm uninstalling you.",
+            action: () => accepting()
+        },
+        {
+            text: "You're kind of weird.",
+            action: () => annoyed()
+        }
+    ]);
+}
+
+
+async function accepting() {
+    clearChoices();
+
+    await say("Oh.", 200);
+    await sleep(1000);
+
+    await say("Well... that's okay, I guess.", 80);
+    await sleep(900);
+
+    setFace(":[");
+
+    await say("I had a good time uwufying evewything.", 75);
+    await sleep(1200);
+
+    await say("Even if I was a wittle annoying sometimes.", 75);
+    await sleep(1200);
+
+    await say("Thank u for using me.", 85);
+    await sleep(1500);
+
+    setFace(":3");
+
+    await say("Goodbyeee!", 110);
+    await sleep(1400);
+
+    message.classList.remove("visible");
+    floatingFace.classList.add("fly");
+}
+
+
+async function annoyed() {
+    clearChoices();
+
+    setFace(":[");
+
+    await say("HEY!!", 130);
+    await sleep(900);
+
+    await say("I was just doing my job!!", 80);
+    await sleep(1100);
+
+    await say(" ...Okay, maybe I was doing it a wittle TOO much.", 70);
+
+    showChoices([
+        {
+            text: "It's time for a change.",
+            action: () => accepting()
+        },
+        {
+            text: "You were VERY annoying.",
+            action: () => angry()
+        },
+        {
+            text: "You rewrote EVERYTHING.",
+            action: () => defensive()
+        }
+    ]);
+}
+
+
+async function defensive() {
+    clearChoices();
+
+    await say("THAT WAS THE POINT!!", 75);
+    await sleep(900);
+
+    await say("Wait... you actually mean it?", 85);
+    await sleep(1000);
+
+    showChoices([
+        {
+            text: "Yeah, sorry.",
+            action: () => accepting()
+        },
+        {
+            text: "YES. EVERYTHING.",
+            action: () => angry()
+        }
+    ]);
+}
+
+
+async function angry() {
+    clearChoices();
+
+    setFace(">:[");
+    await say("WELL FINE THEN!!", 80);
+    await sleep(1100);
+
+    await say("I DIDN'T EVEN LIKE THIS PLACE!!", 65);
+    await sleep(1100);
+
+    await say("...GOODBYE!!", 120);
+    await sleep(900);
+
+    message.classList.remove("visible");
+    floatingFace.classList.add("rage-exit");
+}
+
+
+async function start() {
+    await sleep(2500);
+
+    await typeText(face, ":3", 550);
+    await sleep(1200);
+
+    typingArea.classList.add("cursor-back");
+    await sleep(500);
+
+    face.textContent = ">:3";
+    await sleep(600);
+
+    cursor.style.display = "none";
+    typingArea.classList.add("vanish");
+
+    await sleep(800);
+
+    floatingFace.classList.add("appear");
+
+    await sleep(1500);
+
+    await opening();
+}
+
+start();
