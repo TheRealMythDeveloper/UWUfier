@@ -137,12 +137,95 @@ body {
     opacity: 1;
 }
  
-
+ 
 @keyframes blink {
     50% {
         opacity: 0;
-    }
+    } 
+} 
+
+#face-eyes,
+#face-mouth {
+    display: inline-block;
+    line-height: 1;
 }
+
+#face-eyes {
+    transform: translateY(0.04em);
+}
+/* Dialogue choices */
+
+#choices {
+    position: absolute;
+    top: calc(50% + 220px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: min(90%, 700px);
+    opacity: 1;
+    z-index: 5;
+}
+
+#choices button {
+    background: white;
+    border: 1px solid #222;
+    padding: 12px 18px;
+    color: #111;
+    font-family: monospace;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+#choices button:hover {
+    background: #111;
+    color: white;
+}
+
+/* Angry dramatic exit */
+
+#floating-face.rage-exit {
+    animation: rageExit 1.2s forwards;
+}
+
+@keyframes rageExit {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.1);
+    }
+} 
+
+/* an example of my coding formats
+#float-character {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+transform: rotate(90deg);
+line-height: 1;
+}
+There you go. And heres AI after making it look good. its the same thing.
+*/
+#float-character {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(90deg);
+    line-height: 1;
+}
+/*looks better, doesn't it.*/
 
 
 

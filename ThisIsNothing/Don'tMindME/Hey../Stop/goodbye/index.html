@@ -14,61 +14,185 @@
         </div>
 
         <div id="floating-face">
-            <span id="float-character">>:3</span>
-        </div>
+<span id="float-character"><span id="face-eyes">:</span> <span id="face-mouth">3</span></span>      </div>
 
-        <div id="message"></div>
-    </main>
+<div id="message"></div>
+<div id="choices"></div>    </main>
 
     <script>
-        const typingArea = document.getElementById("typing-area");
-        const face = document.getElementById("face");
-        const cursor = document.getElementById("cursor");
-        const floatingFace = document.getElementById("floating-face");
-        const message = document.getElementById("message");
+const cursor = document.getElementById("cursor");
+const face = document.getElementById("face");
+const typingArea = document.getElementById("typing-area");
+const floatingFace = document.getElementById("floating-face");
+const character = document.getElementById("float-character");
+const message = document.getElementById("message");
+const choicesBox = document.getElementById("choices");
 
-        const sleep = ms =>
-            new Promise(resolve => setTimeout(resolve, ms));
+const sleep = ms =>
+    new Promise(resolve => setTimeout(resolve, ms));
 
-        async function typeText(element, text, speed = 250) {
-            for (const char of text) {
-                element.textContent += char;
-                await sleep(speed);
+async function typeText(element, text, speed = 100) {
+    for (const char of text) {
+        element.textContent += char;
+        await sleep(speed);
+    }
+}
+
+function clearChoices() {
+    choicesBox.innerHTML = "";
+}
+
+function showChoices(options) {
+    clearChoices();
+
+    options.forEach(option => {
+        const button = document.createElement("button");
+        button.textContent = option.text;
+        button.onclick = option.action;
+        choicesBox.appendChild(button);
+    });
+}
+
+async function say(text, speed = 65) {
+    message.textContent = "";
+    message.classList.add("visible");
+    await typeText(message, text, speed);
+}
+
+function setFace(text) {
+    character.textContent = text;
+}
+
+// ---------------------------------------
+// EDIT YOUR DIALOGUE HERE
+// ---------------------------------------
+
+const scenes = {
+    start: {
+        text: "Why awe you uninstawwing me?",
+        choices: [
+            {
+                text: "I don't need the extension anymore.",
+                action: () => accepting()
+            },
+            {
+                text: "It was getting annoying.",
+                action: () => annoyed()
+            },
+            {
+                text: "Goodbye, UWUfier.",
+                action: () => accepting()
             }
+        ]
+    }
+};
+
+// ---------------------------------------
+// ACCEPTING ROUTE
+// ---------------------------------------
+
+async function accepting() {
+    clearChoices();
+
+    await say("Oh... okie.", 100);
+    await sleep(900);
+
+    setFace(":[");
+
+    await say("I undewstand. Things change, I guess.", 80);
+    await sleep(1200);
+
+    await say("Thank u fow using me!", 75);
+    await sleep(1200);
+
+    setFace(":3");
+
+    await say("Goodbyeee!", 100);
+    await sleep(1300);
+
+    message.classList.remove("visible");
+    floatingFace.classList.add("fly");
+}
+
+// ---------------------------------------
+// ANNOYED ROUTE
+// ---------------------------------------
+
+async function annoyed() {
+    clearChoices();
+
+    await say("ANNOYING?! ME?!", 80);
+    await sleep(700);
+
+    setFace(":[");
+
+    await say("Well... maybe I was a wittle too much.", 75);
+    await sleep(1000);
+
+    showChoices([
+        {
+            text: "It was just time for a change.",
+            action: () => accepting()
+        },
+        {
+            text: "You were VERY annoying.",
+            action: () => angry()
         }
+    ]);
+}
 
-        async function start() {
-            await sleep(2500);
+// ---------------------------------------
+// ANGRY ENDING
+// ---------------------------------------
 
-            await typeText(face, ":3", 650);
-            await sleep(1800);
+async function angry() {
+    clearChoices();
 
-typingArea.classList.add("cursor-back");
-            await sleep(450);
+    setFace(">:[");
+    await say("WELL FINE THEN!!", 80);
+    await sleep(1000);
 
-            face.textContent = ">:3";
-            await sleep(350);
+    await say("I'M LEAVING!!", 80);
+    await sleep(1000);
 
-            cursor.style.display = "none";
+    message.classList.remove("visible");
+    floatingFace.classList.add("rage-exit");
 
-            typingArea.classList.add("vanish");
+    // Dramatic exit animation, without interfering
+    // with the user's browser or closing their tab.
+}
 
-            await sleep(700);
+// ---------------------------------------
+// OPENING ANIMATION
+// ---------------------------------------
 
-            floatingFace.classList.add("appear");
+async function start() {
+    await sleep(2500);
 
-            await sleep(1800);
+    await typeText(face, ":3", 550);
+    await sleep(1200);
 
-            message.classList.add("visible");
-            await typeText(message, "Why awe you twying to uninstaww me?", 120);
+    typingArea.classList.add("cursor-back");
+    await sleep(500);
 
-            await sleep(2500);
+    face.textContent = ">:3";
+    await sleep(600);
 
-            message.classList.remove("visible");
-            floatingFace.classList.add("fly");
-        }
+    cursor.style.display = "none";
+    typingArea.classList.add("vanish");
 
-        start();
-    </script>
+    await sleep(800);
+
+    floatingFace.classList.add("appear");
+
+    await sleep(1500);
+
+    await say(scenes.start.text, 85);
+
+    showChoices(scenes.start.choices);
+}
+
+start();
+</script>
 </body>
 </html>
