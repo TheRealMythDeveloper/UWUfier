@@ -15,7 +15,7 @@
 
         <div id="floating-face">
 <span id="float-character"><span id="face-eyes">:</span> <span id="face-mouth">3</span></span>      </div>
-
+ 
 <div id="message"></div>
 <div id="choices"></div>    </main>
 
@@ -45,9 +45,10 @@ function clearChoices() {
 function showChoices(options) {
     clearChoices();
 
-    options.forEach(option => {
+    options.forEach((option, index) => {
         const button = document.createElement("button");
         button.textContent = option.text;
+        button.style.setProperty("--choice-index", index);
         button.onclick = option.action;
         choicesBox.appendChild(button);
     });
@@ -63,108 +64,147 @@ function setFace(text) {
     character.textContent = text;
 }
 
-// ---------------------------------------
-// EDIT YOUR DIALOGUE HERE
-// ---------------------------------------
 
-const scenes = {
-    start: {
-        text: "Why awe you uninstawwing me?",
-        choices: [
-            {
-                text: "I don't need the extension anymore.",
-                action: () => accepting()
-            },
-            {
-                text: "It was getting annoying.",
-                action: () => annoyed()
-            },
-            {
-                text: "Goodbye, UWUfier.",
-                action: () => accepting()
-            }
-        ]
-    }
-};
+async function opening() {
+    await say("Why awe you uninstawwing me?", 85);
 
-// ---------------------------------------
-// ACCEPTING ROUTE
-// ---------------------------------------
+    showChoices([
+        {
+            text: "I don't need you anymore.",
+            action: () => accepting()
+        },
+        {
+            text: "You're annoying.",
+            action: () => annoyed()
+        },
+        {
+            text: "What are you doing here?",
+            action: () => curious()
+        }
+    ]);
+}
+
+
+async function curious() {
+    clearChoices();
+
+    await say("I... wanted to say hi?", 90);
+    await sleep(900);
+
+    await say("Wait. That's not why you're here, is it?", 75);
+
+    showChoices([
+        {
+            text: "No. I'm uninstalling you.",
+            action: () => accepting()
+        },
+        {
+            text: "You're kind of weird.",
+            action: () => annoyed()
+        }
+    ]);
+}
+
 
 async function accepting() {
     clearChoices();
 
-    await say("Oh... okie.", 100);
+    await say("Oh.", 200);
+    await sleep(1000);
+
+    await say("Well... that's okay, I guess.", 80);
     await sleep(900);
 
     setFace(":[");
 
-    await say("I undewstand. Things change, I guess.", 80);
+    await say("I had a good time uwufying evewything.", 75);
     await sleep(1200);
 
-    await say("Thank u fow using me!", 75);
+    await say("Even if I was a wittle annoying sometimes.", 75);
     await sleep(1200);
+
+    await say("Thank u for using me.", 85);
+    await sleep(1500);
 
     setFace(":3");
 
-    await say("Goodbyeee!", 100);
-    await sleep(1300);
+    await say("Goodbyeee!", 110);
+    await sleep(1400);
 
     message.classList.remove("visible");
     floatingFace.classList.add("fly");
 }
 
-// ---------------------------------------
-// ANNOYED ROUTE
-// ---------------------------------------
 
 async function annoyed() {
     clearChoices();
 
-    await say("ANNOYING?! ME?!", 80);
-    await sleep(700);
-
     setFace(":[");
 
-    await say("Well... maybe I was a wittle too much.", 75);
-    await sleep(1000);
+    await say("HEY!!", 130);
+    await sleep(900);
+
+    await say("I was just doing my job!!", 80);
+    await sleep(1100);
+
+    await say(" ...Okay, maybe I was doing it a wittle TOO much.", 70);
 
     showChoices([
         {
-            text: "It was just time for a change.",
+            text: "It's time for a change.",
             action: () => accepting()
         },
         {
             text: "You were VERY annoying.",
             action: () => angry()
+        },
+        {
+            text: "You rewrote EVERYTHING.",
+            action: () => defensive()
         }
     ]);
 }
 
-// ---------------------------------------
-// ANGRY ENDING
-// ---------------------------------------
+
+async function defensive() {
+    clearChoices();
+
+    await say("THAT WAS THE POINT!!", 75);
+    await sleep(900);
+
+    await say("Wait... you actually mean it?", 85);
+    await sleep(1000);
+
+    showChoices([
+        {
+            text: "Yeah, sorry.",
+            action: () => accepting()
+        },
+        {
+            text: "YES. EVERYTHING.",
+            action: () => angry()
+        }
+    ]);
+}
+
 
 async function angry() {
     clearChoices();
 
     setFace(">:[");
     await say("WELL FINE THEN!!", 80);
-    await sleep(1000);
+    await sleep(1100);
 
-    await say("I'M LEAVING!!", 80);
-    await sleep(1000);
+    await say("I DIDN'T EVEN LIKE THIS PLACE!!", 65);
+    await sleep(1100);
+
+    await say("...GOODBYE!!", 120);
+    await sleep(900);
 
     message.classList.remove("visible");
     floatingFace.classList.add("rage-exit");
-
-    // Dramatic exit animation, without interfering
-    // with the user's browser or closing their tab.
 }
 
-// ---------------------------------------
-// OPENING ANIMATION
-// ---------------------------------------
 
 async function start() {
     await sleep(2500);
@@ -187,9 +227,7 @@ async function start() {
 
     await sleep(1500);
 
-    await say(scenes.start.text, 85);
-
-    showChoices(scenes.start.choices);
+    await opening();
 }
 
 start();

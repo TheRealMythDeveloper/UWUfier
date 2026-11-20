@@ -153,39 +153,79 @@ body {
 #face-eyes {
     transform: translateY(0.04em);
 }
-/* Dialogue choices */
+
 
 #choices {
     position: absolute;
     top: calc(50% + 220px);
     left: 50%;
     transform: translateX(-50%);
+
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 12px;
-    width: min(90%, 700px);
-    opacity: 1;
+    gap: 10px;
+
+    width: min(92%, 760px);
     z-index: 5;
 }
 
 #choices button {
-    background: white;
-    border: 1px solid #222;
-    padding: 12px 18px;
-    color: #111;
+    position: relative;
+    padding: 12px 17px;
+
+    background: #ffffff; 
+    color: #111111;
+    border: 1px solid #111111;
+
     font-family: monospace;
     font-size: 14px;
+    text-align: left;
+
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+
+    opacity: 0;
+    animation: choiceAppear 0.35s ease forwards;
+    animation-delay: calc(var(--choice-index) * 0.12s);
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
+}
+
+#choices button::before {
+    content: "> ";
+    opacity: 0.45;
 }
 
 #choices button:hover {
-    background: #111;
-    color: white;
+    background: #111111;
+    color: #ffffff;
+    transform: translateY(-2px);
 }
 
-/* Angry dramatic exit */
+#choices button:active {
+    transform: translateY(0);
+}
+
+#choices button:focus-visible {
+    outline: 2px dashed #111111;
+    outline-offset: 4px;
+}
+
+@keyframes choiceAppear {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 #floating-face.rage-exit {
     animation: rageExit 1.2s forwards;
@@ -263,10 +303,10 @@ I Spend hours working on these. Sure this isnt the planned product, I didn't rea
 I just wanted to make small fun things that I could focus on for long enough without hurting.
 So please.
 Just.. Try it out.
-I'm working my butt off trying to get in hours for programming,
+I'm working a lot trying to get in hours for programming,
 It's hard.
 
 I have AI declaration statements IN THE README. So.. just read that.
 - Myth.
 
-*/
+*/ 
