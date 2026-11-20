@@ -16,11 +16,19 @@ I must say, I am vewy sowwy fow doing this to you.. um. This was to funny to pas
 
 ## Instawwation
 
+**Chrome**
 1. Downwoad ow cwone this wepositowy.
 2. Open `chrome://extensions`.
 3. Enabwe **Devewopew mode**.
 4. Cwick **Woad unpacked**.
 5. Sewect the UWUfier fowdew.
+
+
+**Firefox**
+Go to this link
+https://addons.mozilla.org/en-US/firefox/addon/uwuextension/
+And install.
+Or, download the latest Firefox release, and do the same as chrome but In firefox. 
 
 And that's it!! The intewnet is now a wittwe mowe... me. >:3
 
