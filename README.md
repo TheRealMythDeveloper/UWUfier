@@ -17,7 +17,7 @@ I must say, I am vewy sowwy fow doing this to you.. um. This was to funny to pas
 ## Instawwation
 
 **Chrome**
-1. Go to weweases, and find chwome 1.0.2, then donwoad.
+1. Go to [Hewe](https://github.com/TheRealMythDeveloper/UWUfier/releases/tag/fix), and download.
 2. Open `chrome://extensions`.
 3. Enabwe **Devewopew mode**.
 4. Cwick **Woad unpacked**.
