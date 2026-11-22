@@ -29,11 +29,11 @@ Go to this link
 https://addons.mozilla.org/en-US/firefox/addon/uwuextension/
 And install.
 
-OR: ()
 
 
 
-## AS of current the FireFox listing is still in review, so for now, follow the steps for chrome or Firefox using a release.
+
+## AS of current the FireFox listing is still in review, so for now, follow the steps for chrome using a release. FIREFOX IS NOT SUPPORTED YET.
 <img width="1275" height="424" alt="image" src="https://github.com/user-attachments/assets/bc30c1b4-277a-4624-8fb2-7542a3983793" />
 
 
