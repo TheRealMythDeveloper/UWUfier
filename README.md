@@ -17,7 +17,7 @@ I must say, I am vewy sowwy fow doing this to you.. um. This was to funny to pas
 ## Instawwation
 
 **Chrome**
-1. Downwoad ow cwone this wepositowy.
+1. Go to weweases, and find chwome 1.0.2, then donwoad.
 2. Open `chrome://extensions`.
 3. Enabwe **Devewopew mode**.
 4. Cwick **Woad unpacked**.
@@ -28,7 +28,15 @@ I must say, I am vewy sowwy fow doing this to you.. um. This was to funny to pas
 Go to this link
 https://addons.mozilla.org/en-US/firefox/addon/uwuextension/
 And install.
-Or, download the latest Firefox release, and do the same as chrome but In firefox. 
+
+OR: ()
+
+
+
+## AS of current the FireFox listing is still in review, so for now, follow the steps for chrome or Firefox using a release.
+<img width="1275" height="424" alt="image" src="https://github.com/user-attachments/assets/bc30c1b4-277a-4624-8fb2-7542a3983793" />
+
+
 
 And that's it!! The intewnet is now a wittwe mowe... me. >:3
 
