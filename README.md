@@ -27,14 +27,9 @@ I must say, I am vewy sowwy fow doing this to you.. um. This was to funny to pas
 **Firefox**
 Go to this link
 https://addons.mozilla.org/en-US/firefox/addon/uwuextension/
-And install.
+And install!
+FIREFOX AND CHROME SUPPORTED!
 
-
-
-
-
-## AS of current the FireFox listing is still in review, so for now, follow the steps for chrome using a release. FIREFOX IS NOT SUPPORTED YET.
-<img width="1275" height="424" alt="image" src="https://github.com/user-attachments/assets/bc30c1b4-277a-4624-8fb2-7542a3983793" />
 
 
 
